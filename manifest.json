@@ -1,20 +1,20 @@
-
 {
-  "name": "Campfire Chat Notifier",
-  "version": "0.1",
-  "description": "Campfire Chat desktop notificatio for Google Chrome.",
-  "icons": {
-      "128": "icons/icon128.png",
-      "16": "icons/icon16.png"
-   },
-  "background_page": "background.html",
-  "permissions": [
-    "tabs", "https://*.campfirenow.com/*"
-  ],
-  "content_scripts": [
-    {
-      "matches": ["https://*.campfirenow.com/*"],
-      "js": ["js/campfire.js"]
-    }
-  ]
+	"name": "Campfire Chat Notifier",
+	"version": "0.1",
+	"description": "Campfire Chat desktop notificatio for Google Chrome.",
+	"icons": {
+		"128": "icons/icon128.png",
+		"16": "icons/icon16.png"
+	},
+	"background_page": "background.html",
+	"permissions": ["tabs", "notifications","https://*.campfirenow.com/*"],
+	"content_scripts": [
+		{
+			"matches": ["https://*.campfirenow.com/*"],
+			"js": ["js/campfire.js"]
+		}
+	],
+	"browser_action": {
+		"default_icon": "icons/icon.png"
+	}
 }
