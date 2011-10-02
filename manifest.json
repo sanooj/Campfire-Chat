@@ -9,12 +9,12 @@
    },
   "background_page": "background.html",
   "permissions": [
-    "tabs", "https://*/*"
+    "tabs", "https://*.campfirenow.com/*"
   ],
   "content_scripts": [
     {
-      "matches": ["https://*.google.com/*"],
+      "matches": ["https://*.campfirenow.com/*"],
       "js": ["js/mls.js"]
     }
-  ],
+  ]
 }
