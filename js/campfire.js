@@ -4,10 +4,38 @@ b[0]&&b[0].ownerDocument||c);var h=[],i;for(var j=0,k;(k=a[j])!=null;j++){typeof
 
 //////////////////////////////////////////////////////////////// END OF JQUERY ////////////////////////////////////////////////////////////////////////////////////
 
-$('#search_form').submit(function(){
-    var value = $('#term').val();
-   
+// $('#search_form').submit(function(){
+    // var values = $('#term').val();
+//    
+// alert(values);
+    // // chrome.extension.sendRequest({'action' : 'passContent', 'search' : value});
+// });
 
-    chrome.extension.sendRequest({'action' : 'passContent', 'search' : value});
-});
 
+   function titleModified() {
+   	var value = "Title Modified";
+   	chrome.extension.sendRequest({'action' : 'passContent', 'search' : value});
+   // window.alert("Title modifed");
+}
+
+
+    var titleEl = document.getElementsByTagName("title")[0];
+    var docEl = document.documentElement;
+
+
+    if (docEl && docEl.addEventListener) {
+        docEl.addEventListener("DOMSubtreeModified", function(evt) {
+            var t = evt.target;
+            if (t === titleEl || (t.parentNode && t.parentNode === titleEl)) {
+                titleModified();
+            }
+        }, false);
+    } else {
+        document.onpropertychange = function() {
+            if (window.event.propertyName == "title") {
+                titleModified();
+            }
+        };
+    }
+
+    
