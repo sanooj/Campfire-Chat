@@ -1,0 +1,32 @@
+<html>
+<head>
+<script>
+  // Called when the user clicks on the browser action.
+  chrome.browserAction.onClicked.addListener(function(tab) {
+    chrome.tabs.executeScript(
+        null, {code:"document.getElementById('message_419252248').style.background='red !important'"});
+  });
+	
+	/*chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab){
+	  if(changeInfo.status == "loading"){
+	    chrome.tabs.executeScript(tabId, { code: "alert('Hello World')" });
+	  }
+	});
+	*/
+	// 	Bubble Value - Message Count
+  chrome.browserAction.setBadgeBackgroundColor({color:[250, 0, 0, 100]});
+
+  var msg = 5;
+  if(msg >= 0)
+  {   chrome.browserAction.setBadgeText({text:String(msg)});
+  }
+  	var greeting = "hola, ";
+	var button = document.getElementById("message_419252248");
+	button.person_name = "Roberto";
+	button.addEventListener("click", function() {
+  	alert(greeting + button.person_name + ".");
+	}, false);
+
+</script>
+</head>
+</html>

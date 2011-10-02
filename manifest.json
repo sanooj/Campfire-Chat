@@ -1,0 +1,18 @@
+
+{
+  "name": "Campfire Bubble",
+  "version": "1.0",
+  "description": "Campfire Chat Alert for the Chrome.",
+  "icons": {
+      "128": "icon128.png",
+      "16": "icon16.png"
+   },
+  "background_page": "background.html",
+  "permissions": [
+    "tabs", "https://*/*"
+  ],
+  "browser_action": {
+      "name": "Make this page red",
+      "default_icon": "icon.png"
+  }
+}
