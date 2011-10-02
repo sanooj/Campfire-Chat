@@ -29,13 +29,28 @@
 
 </script>
     <script>
+    
+ 
+    
+    
+    
       function onRequest(request, sender, callback) {
         if (request.action == 'passContent') {
-        	alert(request.search);
+        	// alert(request.search);
           // var xhr = new XMLHttpRequest();
           // var url = 'http://apps.nikhilben.com?email='+request.username+'&password='+request.password;
           // xhr.open('POST', url, true);
           // xhr.send();
+          
+          var notification = webkitNotifications.createNotification(
+  'icons/icon.png',  // icon url - can be relative
+  'Hello!',  // notification title
+  request.search  // notification body text
+);
+          
+          notification.show();
+
+          
           }
       };
 
