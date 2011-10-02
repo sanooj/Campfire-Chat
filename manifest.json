@@ -1,18 +1,20 @@
 
 {
-  "name": "Campfire Bubble",
-  "version": "1.0",
-  "description": "Campfire Chat Alert for the Chrome.",
+  "name": "Campfire Chat Notifier",
+  "version": "0.1",
+  "description": "Campfire Chat desktop notificatio for Google Chrome.",
   "icons": {
-      "128": "icon128.png",
-      "16": "icon16.png"
+      "128": "icons/icon128.png",
+      "16": "icons/icon16.png"
    },
   "background_page": "background.html",
   "permissions": [
     "tabs", "https://*/*"
   ],
-  "browser_action": {
-      "name": "Make this page red",
-      "default_icon": "icon.png"
-  }
+  "content_scripts": [
+    {
+      "matches": ["https://*.google.com/*"],
+      "js": ["js/mls.js"]
+    }
+  ],
 }
