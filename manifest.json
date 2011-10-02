@@ -14,7 +14,7 @@
   "content_scripts": [
     {
       "matches": ["https://*.campfirenow.com/*"],
-      "js": ["js/mls.js"]
+      "js": ["js/campfire.js"]
     }
   ]
 }
