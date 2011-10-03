@@ -11,31 +11,39 @@ b[0]&&b[0].ownerDocument||c);var h=[],i;for(var j=0,k;(k=a[j])!=null;j++){typeof
     // // chrome.extension.sendRequest({'action' : 'passContent', 'search' : value});
 // });
 
-
    function titleModified() {
-   	var value = "Title Modified";
-   	chrome.extension.sendRequest({'action' : 'passContent', 'search' : value});
+   	var last_message_person = $('.chat tr:last-child td.person').text();
+   	var last_message = $('.chat tr:last-child td.body').text();
+   	var title_message = $('title').text();
+   	
+   	if(!title_message)
+   	{	return false;
+   	}
+   	else{
+   	var value = last_message ;
+   	chrome.extension.sendRequest({'action' : 'passContent', 'search' : value, 'person' : last_message_person});
+   	}
    // window.alert("Title modifed");
-}
-
+	}
 
     var titleEl = document.getElementsByTagName("title")[0];
     var docEl = document.documentElement;
 
+	//var current_title = document.title
 
-    if (docEl && docEl.addEventListener) {
-        docEl.addEventListener("DOMSubtreeModified", function(evt) {
-            var t = evt.target;
-            if (t === titleEl || (t.parentNode && t.parentNode === titleEl)) {
-                titleModified();
-            }
-        }, false);
-    } else {
-        document.onpropertychange = function() {
-            if (window.event.propertyName == "title") {
-                titleModified();
-            }
-        };
-    }
-
+	if (docEl && docEl.addEventListener) {
+	        docEl.addEventListener("DOMSubtreeModified", function(evt) {
+	            var t = evt.target;
+	            if (t === titleEl || (t.parentNode && t.parentNode === titleEl)) {
+	                titleModified();
+	 			}
+	        }, false);
+	    } else {
+	        document.onpropertychange = function() {
+	            if (window.event.propertyName == "title") {
+	                titleModified();
+	            }
+	        };
+	    }
+    // added By Sanooj @ 03/10/2011
     
