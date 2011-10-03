@@ -29,11 +29,6 @@
 
 </script>
     <script>
-    
- 
-    
-    
-    
       function onRequest(request, sender, callback) {
         if (request.action == 'passContent') {
         	// alert(request.search);
@@ -42,20 +37,19 @@
           // xhr.open('POST', url, true);
           // xhr.send();
           
-          var notification = webkitNotifications.createNotification(
-  'icons/icon.png',  // icon url - can be relative
-  'Hello!',  // notification title
-  request.search  // notification body text
-);
-          
-          notification.show();
-
-          
-          }
+       var notification = webkitNotifications.createNotification(
+		  'icons/icon128.png',  // icon url - can be relative
+		  request.person,  // notification title
+		  request.search  // notification body text
+			);
+        notification.show();
+        setTimeout( function() { notification.cancel() }, 10000 );
+		}
       };
-
+   
       // Wire up the listener.
       chrome.extension.onRequest.addListener(onRequest);
+     // chrome.tabs.get(integer tabId, function callback)
       </script>
 </head>
 </html>
