@@ -29,27 +29,33 @@
 
 </script>
     <script>
+    
       function onRequest(request, sender, callback) {
+      	
         if (request.action == 'passContent') {
-        	// alert(request.search);
+        // alert(request.search);
           // var xhr = new XMLHttpRequest();
           // var url = 'http://apps.nikhilben.com?email='+request.username+'&password='+request.password;
           // xhr.open('POST', url, true);
-          // xhr.send();
+          // xhr.send(); 
           
+        
+		
        var notification = webkitNotifications.createNotification(
 		  'icons/icon128.png',  // icon url - can be relative
 		  request.person,  // notification title
 		  request.search  // notification body text
 			);
-        notification.show();
-        setTimeout( function() { notification.cancel() }, 10000 );
+			
+        notification.show(); // show notification
+        
+        setTimeout( function() { notification.cancel()}, 10000 ); // notification hiding withing 10 sec
 		}
       };
-   
-      // Wire up the listener.
+
       chrome.extension.onRequest.addListener(onRequest);
-     // chrome.tabs.get(integer tabId, function callback)
+      //chrome.tabs.get(integer tabId, function callback)
+      
       </script>
 </head>
 </html>
