@@ -4,37 +4,21 @@ b[0]&&b[0].ownerDocument||c);var h=[],i;for(var j=0,k;(k=a[j])!=null;j++){typeof
 
 //////////////////////////////////////////////////////////////// END OF JQUERY ////////////////////////////////////////////////////////////////////////////////////
 
-// $('#search_form').submit(function(){
-    // var values = $('#term').val();
-//    
-// alert(values);
-    // // chrome.extension.sendRequest({'action' : 'passContent', 'search' : value});
-// });
-
-   function titleModified() {
-   	var last_message_person = $('.chat tr:last-child td.person').text();
-   	var last_message = $('.chat tr:last-child td.body').text();
-   	var title_message = $('title').text();
-   	
-   	if(!title_message)
-   	{	return false;
-   	}
-   	else{
-   	var value = last_message ;
-   	chrome.extension.sendRequest({'action' : 'passContent', 'search' : value, 'person' : last_message_person});
-   	}
-   // window.alert("Title modifed");
-	}
+	
+   
 
     var titleEl = document.getElementsByTagName("title")[0];
     var docEl = document.documentElement;
+	var initial_msg = $('title').text();// Intial Title Message
 
-	//var current_title = document.title
-
+	//////////////////////////////////////////////////////////
+	//////   Condition for Title change Event handler   //////
+	//////////////////////////////////////////////////////////
 	if (docEl && docEl.addEventListener) {
 	        docEl.addEventListener("DOMSubtreeModified", function(evt) {
 	            var t = evt.target;
 	            if (t === titleEl || (t.parentNode && t.parentNode === titleEl)) {
+
 	                titleModified();
 	 			}
 	        }, false);
@@ -45,5 +29,23 @@ b[0]&&b[0].ownerDocument||c);var h=[],i;for(var j=0,k;(k=a[j])!=null;j++){typeof
 	            }
 	        };
 	    }
-    // added By Sanooj @ 03/10/2011
     
+    function titleModified() {
+	   	var last_message_person = $('.chat tr:last-child td.person').text(); // Collecting name of the chat person
+	   	var last_message = $('.chat tr:last-child td.body').text(); // Collecting Chat Message
+	   	var title_message = $('title').text(); // Current Title Text
+	   	
+	   	//////////////////////////////////////////////////////////
+	   	//////       Condition for Chat Notification        //////
+	   	//////////////////////////////////////////////////////////	   	
+	   	if(!title_message || initial_msg == title_message ) // function works when there is title value is null or initial title is equal to current title
+		   	{	return false;
+		   	}
+	   	else 
+		   	{
+		   		var value = last_message ;
+		   		chrome.extension.sendRequest({'action' : 'passContent', 'search' : value, 'person' : last_message_person});
+		   		
+		   	}
+  
+	}
