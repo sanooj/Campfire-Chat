@@ -1,7 +1,7 @@
 {
-	"name": "Campfire Chat Notifier",
+	"name": "Campfire (V 0.1 Beta)",
 	"version": "0.1",
-	"description": "Campfire Chat desktop notificatio for Google Chrome.",
+	"description": "Campfire Chat desktop notification for Google Chrome.",
 	"icons": {
 		"128": "icons/icon128.png",
 		"16": "icons/icon16.png"
