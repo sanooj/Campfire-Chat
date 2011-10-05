@@ -34,17 +34,33 @@ b[0]&&b[0].ownerDocument||c);var h=[],i;for(var j=0,k;(k=a[j])!=null;j++){typeof
 	   	var last_message_person = $('.chat tr:last-child td.person').text(); // Collecting name of the chat person
 	   	var last_message = $('.chat tr:last-child td.body').text(); // Collecting Chat Message
 	   	var title_message = $('title').text(); // Current Title Text
-	   	
+  		
 	   	//////////////////////////////////////////////////////////
 	   	//////       Condition for Chat Notification        //////
 	   	//////////////////////////////////////////////////////////	   	
-	   	if(!title_message || initial_msg == title_message ) // function works when there is title value is null or initial title is equal to current title
-		   	{	return false;
+	   	
+		/*if((last_message == "has left the room" || last_message == "has entered the room") && title_message )
+				{
+					if (initial_msg != title_message) {
+						var value = last_message ;
+						chrome.extension.sendRequest({'action' : 'passContents', 'search' : value, 'person' : last_message_person});
+					}
+				}*/
+		if(!title_message || initial_msg == title_message ) // function works when there is title value is null or initial title is equal to current title
+		   	{	
+		   		var count = "";
+		   		chrome.extension.sendRequest({'action' : 'passBadgeContent', 'chatCount': count});
+		   		return false;
+		   		
 		   	}
-	   	else 
+	   	else // function work when new message comes
 		   	{
+		   		// alert(last_message);
 		   		var value = last_message ;
-		   		chrome.extension.sendRequest({'action' : 'passContent', 'search' : value, 'person' : last_message_person});
+		   		var count = title_message.slice(0, 4)
+		   		count = count.trim(count)
+		   		//var count = 5;
+		   		chrome.extension.sendRequest({'action' : 'passContent', 'search' : value, 'person' : last_message_person, 'chatCount': count});
 		   		
 		   	}
   
