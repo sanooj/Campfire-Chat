@@ -33,24 +33,34 @@
       function onRequest(request, sender, callback) {
       	
         if (request.action == 'passContent') {
-        // alert(request.search);
-          // var xhr = new XMLHttpRequest();
-          // var url = 'http://apps.nikhilben.com?email='+request.username+'&password='+request.password;
-          // xhr.open('POST', url, true);
-          // xhr.send(); 
-          
-        
-		
-       var notification = webkitNotifications.createNotification(
-		  'icons/icon128.png',  // icon url - can be relative
-		  request.person,  // notification title
-		  request.search  // notification body text
+        	var msg = request.chatCount;
+       		chrome.browserAction.setBadgeText({text:String(msg)});
+ 		
+       		var notification = webkitNotifications.createNotification(
+		  		'icons/icon128.png',  // icon url - can be relative
+		  		request.person,  // notification title
+		  		request.search  // notification body text
 			);
-			
-        notification.show(); // show notification
-        
-        setTimeout( function() { notification.cancel()}, 10000 ); // notification hiding withing 10 sec
+		
+        	notification.show(); // show notification    
+        	setTimeout( function() { notification.cancel()}, 15000 ); // notification hiding withing 10 sec
 		}
+/*
+		else if (request.action == 'passContents') 
+		{
+		    var notification = webkitNotifications.createNotification(
+		  		'icons/icon128.png',  // icon url - can be relative
+		  		request.person,  // notification title
+		  		request.search  // notification body text
+			);
+        	notification.show(); // show notification
+        	setTimeout( function() { notification.cancel()}, 15000 ); // notification hiding withing 10 sec
+		}*/
+
+		else if (request.action == 'passBadgeContent') {
+			var msg = request.chatCount;
+			chrome.browserAction.setBadgeText({text:String(msg)});
+		};
       };
 
       chrome.extension.onRequest.addListener(onRequest);
