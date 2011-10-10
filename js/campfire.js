@@ -57,8 +57,9 @@ b[0]&&b[0].ownerDocument||c);var h=[],i;for(var j=0,k;(k=a[j])!=null;j++){typeof
 		   	{
 		   		// alert(last_message);
 		   		var value = last_message ;
-		   		var count = title_message.slice(0, 4)
+		   		var count = title_message.slice(1, 4)
 		   		count = count.trim(count)
+		   		count = count.replace(")","")
 		   		//var count = 5;
 		   		chrome.extension.sendRequest({'action' : 'passContent', 'search' : value, 'person' : last_message_person, 'chatCount': count});
 		   		
